@@ -1,11 +1,11 @@
-pipeline {
-    agent any
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Running build automation'
-                sh './gradlew build --no-daemon'
-                archiveArtifacts artifacts: 'dist/trainSchedule.zip'
+pipeline{
+    agent 'devlopment'
+    stages{
+        stage('master')
+        {
+            steps{
+                sh '''sh test-prod.sh'''
+                input id: '12', message: 'name ', parameters: [choice(choices: ['$1', '$2'], description: '', name: 'choise')]
             }
         }
     }
